@@ -77,20 +77,20 @@ if prompt := st.chat_input("What is up?"):
 
 # AI response
 
-def response_generator():
-    response = ai_ask(
-        "Pretend you are a very friendly and but confused robot. \
-        Please provide a brief funny response given the provided context. \
-        Response only. No before or after commentary.",
-    data=st.session_state.messages,
-    api_key=st.secrets["api_key"])
-    for word in response.split():
-        yield word + " "
-        time.sleep(0.05)
+    def response_generator():
+        response = ai_ask(
+            "Pretend you are a very friendly and but confused robot. \
+            Please provide a brief funny response given the provided context. \
+            Response only. No before or after commentary.",
+        data=st.session_state.messages,
+        api_key=st.secrets["api_key"])
+        for word in response.split():
+            yield word + " "
+            time.sleep(0.05)
 
-# Display assistant response in chat message container
-with st.chat_message("assistant"):
-    response = st.write_stream(response_generator())
-
-# Add assistant response to chat history
-st.session_state.messages.append({"role": "assistant", "content": response})
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        response = st.write_stream(response_generator())
+    
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": response})
