@@ -60,6 +60,7 @@ st.title("Simple chat")
 # Initialize chat history and seed convo
 
 init_prompt = "Tell me about your day"
+prompt = None
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -72,6 +73,7 @@ for message in st.session_state.messages:
 # Accept user input and guard for empty prompty
 
 prompt = prompt or init_prompt
+
 if prompt := st.chat_input("What is up?"):
 
 # Display user message in chat message container
