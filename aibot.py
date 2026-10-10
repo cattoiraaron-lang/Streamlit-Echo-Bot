@@ -57,10 +57,7 @@ def ai_ask(
 
 st.title("Simple chat")
 
-# Initialize chat history and seed convo
-
-init_prompt = "Tell me about your day"
-prompt = None
+# Initialize chat history
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -70,25 +67,21 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Accept user input and guard for empty prompty
-
-prompt = prompt or init_prompt
 
 if prompt := st.chat_input("What is up?"):
-
-# Display user message in chat message container
+    # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(prompt)
-
-# Add user message to chat history
-st.session_state.messages.append({"role": "user", "content": prompt})
+    # Add user message to chat history
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
 # AI response
+
 def response_generator():
     response = ai_ask(
-        "Pretend you are a very friendly and but unhelpful person. \
-        Please provide a short funny response given the provided context. \
-        Please provide the response only with no before or after commentary.",
+        "Pretend you are a very friendly and but confused robot. \
+        Please provide a brief funny response given the provided context. \
+        Response only. No before or after commentary.",
     data=st.session_state.messages,
     api_key=st.secrets["api_key"])
     for word in response.split():
