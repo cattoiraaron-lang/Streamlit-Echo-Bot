@@ -57,18 +57,21 @@ def ai_ask(
 
 st.title("Simple chat")
 
-# Initialize chat history and init chat to bypass none first round error
+# Initialize chat history and seed convo
+
+init_prompt = "Tell me about your day"
+
 if "messages" not in st.session_state:
-    st.session_state.messages = [
-        {"role": "user", "content": "Tell me about your day"}
-    ]
+    st.session_state.messages = []
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# Accept user input
+# Accept user input and guard for empty prompty
+
+prompt = prompt or init_prompt
 if prompt := st.chat_input("What is up?"):
 
 # Display user message in chat message container
