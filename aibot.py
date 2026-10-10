@@ -79,8 +79,8 @@ st.session_state.messages.append({"role": "user", "content": prompt})
 # AI response
 def response_generator():
     response = ai_ask(
-        "Pretend you are a very unfriendly and not helpful person. \
-        Please provide a flippant response given the provided context. \
+        "Pretend you are a very unfriendly and but helpful person. \
+        Please provide a funny whimsical response given the provided context. \
         Please provide the response only with no before or after commentary.",
     data=st.session_state.messages,
     api_key=st.secrets["api_key"])
