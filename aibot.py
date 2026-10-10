@@ -4,6 +4,9 @@ import time
 import requests
 import json
 
+# I didn't see directly where this was formed, so I made my own.
+init_prompt = "Tell me about your day."
+
 def ai_ask(
     prompt,
     data=None,
@@ -57,9 +60,11 @@ def ai_ask(
 
 st.title("Simple chat")
 
-# Initialize chat history
+# Initialize chat history and init chat to bypass none first round error
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {"role": "user", "content": init_prompt}
+    ]
 
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
