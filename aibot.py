@@ -57,7 +57,7 @@ def ai_ask(
 
 st.title("Simple chat")
 with st.chat_message("assistant"):
-    st.image(“TheSavedImage.png", caption="CIT 144 – Demographics Data Visualization")
+    st.image("CattoirAaron_PowerBI.png", caption="CIT 144 – Demographics Data Visualization")
 
 # Initialize chat history
 
